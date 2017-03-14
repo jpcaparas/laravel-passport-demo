@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    return redirect()->route('user.profile');
+});
+
+Route::group(['prefix' => 'users', 'middleware' => 'auth.basic'], function () {
+    Route::get('profile', '\App\Http\Controllers\Web\UserController@showProfile')->name('user.profile');
 });
