@@ -101,6 +101,8 @@ protected $middlewareGroups = [
 
 Visit the application on your browser and follow the instructions. You should now be able to make an API call to the OAuth2-protected `api/user` endpoint **but** with the convenience of the access token being part of the cookie sent with every XMLHttpRequest.
 
+Note: You will be presented with a basic auth prompt. The credentials should be `jp@pixelfusion.co.nz` / `secret`.
+
 
 ### Gotchas
 
