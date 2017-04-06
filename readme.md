@@ -1,8 +1,10 @@
-# Laravel Passport Demo
+# :passport_control: Laravel Passport Demo
 
-## Overview
+## :information_desk_person: Overview
 
 This repo was created to be presented in one of [Pixel Fusion](https://pixelfusion.co.nz)'s engineering talks.
+
+[Passport](https://laravel.com/docs/5.4/passport) is an OAuth2 authentication server package for the Laravel framework. Passport makes it easy for developers who build RESTful APIs to add authentication to their API endpoints.
 
 The steps listed here aim to give a basic understanding of how Laravel Passport, an OAuth2 server implementation, can be used to develop a self-consuming, OAuth2-protected web application.
 
@@ -10,13 +12,13 @@ This app is expected to run with **very minimal fuss**. It comes with pre-define
 
 ---
 
-## Serving the application
+## :red_car: Serving the application
 
 If you already have [Laravel Valet](https://laravel.com/docs/5.4/valet), great; if not, use `php artisan serve` instead to spin up a PHP web server.
 
 ---
 
-## Demo steps
+## :wrench: Wiring it up
 
 ### Install dependencies
 
@@ -27,7 +29,7 @@ If you already have [Laravel Valet](https://laravel.com/docs/5.4/valet), great; 
 
 1. Run `composer require laravel/passport`.
 1. Register the Passport service provider in the providers array of your `config/app.php`:
-```
+```php
 [...]
 'providers' => [
 
@@ -43,7 +45,7 @@ If you already have [Laravel Valet](https://laravel.com/docs/5.4/valet), great; 
 3. Run `php artisan migrate:refresh --seed` to install the tables. We'll be using `SQLite` instead of `MySQL` so put in `sqlite` as the database driver on the `.env` file. Also, create a blank `database.sqlite` file under `./database` if it does not exist.
 3. Run `php artisan passport:install` to generate encryption keys.
 3. Add the `HasApiTokens` trait on the `User` model.
-```
+```php
 [...]
 use Laravel\Passport\HasApiTokens;
 
@@ -53,7 +55,7 @@ class User extends Authenticatable
 }
 ```
 6. Call the `Passport::routes` method within the boot method of your  `app\Providers\AuthServiceProvider.php` file
-```
+```php
 use Laravel\Passport\Passport;
     [...]
 
@@ -66,7 +68,7 @@ use Laravel\Passport\Passport;
 }
 ```
 7. Set the driver option of API authentication to `passport` in your `config/auth.php` configuration file:
-```
+```php
 'guards' => [
     [...]
 
@@ -77,7 +79,7 @@ use Laravel\Passport\Passport;
 ]
 ```
 8. Add the `CreateFreshApiToken` middleware to your `web` middleware group on the `app\Http\Kernel.php` file. This attaches a `laravel_token` cookie to your outgoing responses. This cookie contains an encrypted JWT that Passport will use to authenticate API requests from your JavaScript application.
-```
+```php
 [...]
 protected $middlewareGroups = [
         'web' => [
@@ -104,7 +106,7 @@ Visit the application on your browser and follow the instructions. You should no
 Note: You will be presented with a basic auth prompt. The credentials should be `jp@pixelfusion.co.nz` / `secret`.
 
 
-### Gotchas
+## :ghost: Gotchas
 
 - If receiving _cipher_ exceptions, run `php artisan key:generate` to generate an application key.
 - Make sure the `artisan` file is executable. If it isn't, run `chmod +x artisan`.
