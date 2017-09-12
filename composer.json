@@ -1,12 +1,11 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "jpcaparas/laravel-passport-demo",
+    "description": "A Laravel Passport demo.",
+    "keywords": ["passport", "oauth", "laravel", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
-        "barryvdh/laravel-ide-helper": "^2.3",
+        "php": ">=5.6.4 || ^7.0",
         "firebase/php-jwt": "^4.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "^1.0"
@@ -38,7 +37,6 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan ide-helper:generate",
             "php artisan optimize"
         ],
         "post-update-cmd": [
